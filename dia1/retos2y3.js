@@ -69,7 +69,7 @@ connection.query(sql3, function (err, result)
 
 // // ELIMINAR TODAS LAS NOTAS CON MAS DE 10 AÑOS
 
-// let sql4 = "ALTER TABLE marks DROP ROW WHERE date < 2012-9-9 ";
+// let sql4 = "DELETE FROM marks WHERE date < 2012-9-9 ";
 // connection.query(sql4, function (err, result) 
 // {
 //     if(err)

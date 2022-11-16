@@ -66,7 +66,7 @@ connection.connect((error) => {
 
 // // ELIMINAR TABLA
 
-// let sql4 = "DELETE FROM asignaturas";
+// let sql4 = "DROP TABLE asignaturas";
 // connection.query(sql4, function (err, result) 
 // {
 //     if(err)

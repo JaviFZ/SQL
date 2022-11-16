@@ -19,7 +19,7 @@ connection.connect((error) => {
 
 // // OBTEN EL ID Y LA NOTA DE LOS ALUMNOS QUE TENGAN UN ID ENTRE 1 Y 20, O QUE SU NOTA SEA MAS DE 8 Y TENGA FECHA DEL AÑO PASADO
 
-// let sql = "SELECT mark , id_studient FROM marks WHERE id_studient BETWEEN 1 AND 20 OR WHERE mark > 8 AND date BETWEEN '2021-01-01' AND '2021-12-31'";
+// let sql = "SELECT mark , id_studient FROM marks WHERE id_studient BETWEEN 1 AND 20 OR (mark > 8 AND date BETWEEN '2021-01-01' AND '2021-12-31')";
 // connection.query(sql, function (err, result) 
 // {
 //     if(err)
