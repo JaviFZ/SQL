@@ -57,8 +57,18 @@ connection.query(sql2, function (err, result)
 
 // // OBTEN NUMERO TOTAL DE ALUMNOS POR ASIGNATURA, NOMBRE DE LA ASIGNATURA  EL NOMBRE Y APELLIDOS DEL PROFESOR QUE LA IMPARTE
 
-// SELECT   title, COUNT(*) FROM subjects JOIN studients ON ( subjects.id_subjects = studients.id_studients );
-let sql3 = "SELECT COUNT (*) AS total_alumnos UNION FROM studients SELECT title, first_name, last_name,  FROM teachers JOIN subjects ON (teachers.id_teachers = subjects.id_subjects)";
+
+// //  SELECT COUNT(id_studients), title, teachers.first_name, teachers.last_name FROM studients
+// // JOIN grupos ON (studients.id_group = grupos.id_groups)
+// // JOIN subject_teacher ON (grupos.id_groups = subject_teacher.id_group)
+// // JOIN subjects ON (subject_teacher.id_subject = subjects.id_subjects)
+// // JOIN teachers ON (subject_teacher.id_teacher = teachers.id_teachers)
+// // GROUP BY subjects.title
+
+
+let sql3 = "SELECT COUNT(id_studients), title, teachers.first_name, teachers.last_name FROM studients JOIN grupos ON (studients.id_group = grupos.id_groups) JOIN subject_teacher ON (grupos.id_groups = subject_teacher.id_group) JOIN subjects ON (subject_teacher.id_subject = subjects.id_subjects) JOIN teachers ON (subject_teacher.id_teacher = teachers.id_teachers) GROUP BY subjects.title"
+
+
 connection.query(sql3, function (err, result) 
 {
     if(err)
