@@ -9,9 +9,9 @@ function getAlumnos(request, response)
 {
     let sql;
     if (request.query.id == null)
-        sql = "SELECT * FROM alumnos";
+        sql = "SELECT * FROM studients";
     else
-        sql = "SELECT * FROM alumnos WHERE id=" + request.body.id;
+        sql = "SELECT * FROM studients WHERE id_studient=" + request.query.id;
      
     connection.query(sql, function (err, result)
     {
@@ -29,10 +29,11 @@ function getAlumnos(request, response)
 function postAlumno(request, response)
 {
     console.log(request.body);
-    let sql = "INSERT INTO alumnos (nombre_alumno, apellido1_alumno, apellido2_alumno)" +
-                " VALUES ('" + request.body.nombre + "', '" +
-                                request.body.apellido1 + "' , '" +
-                                request.body.apellido2 + "')";
+    let sql = "INSERT INTO studients (first_name, last_name , id_grupo, year_ingress)" +
+                " VALUES ('" + request.body.first_name + "', '" +
+                                request.body.last_name + "' , '" +
+                                request.body.id_grupo + "' , '" +
+                                request.body.year_ingress + "')";
 
     console.log(sql);
     connection.query(sql, function (err, result) 
@@ -57,16 +58,18 @@ function postAlumno(request, response)
 function putAlumno(request, response)
 {
     console.log(request.body);
-    let params = [request.body.nombre_alumno, 
-                  request.body.apellido1_alumno, 
-                  request.body.apellido2_alumno,
-                  request.body.id_alumno]
+    let params = [request.body.first_name, 
+                  request.body.last_name, 
+                  request.body.id_group,
+                  request.body.year_ingress,
+                  request.body.id_studient]
 
-    let sql = "UPDATE alumnos SET nombre_alumno = COALESCE(?, nombre_alumno) , " + 
-               "apellido1_alumno = COALESCE(?, apellido1_alumno) , " + 
-               "apellido2_alumno = COALESCE(?, apellido2_alumno)  WHERE id_alumno = ?";
+    let sql = "UPDATE studients SET first_name = COALESCE(?, first_name) , " + 
+               "last_name = COALESCE(?, last_name) , " + 
+               "id_grupo = COALESCE(?, id_grupo) , " + 
+               "year_ingress = COALESCE(?, year_ingress)  WHERE id_studient = ?";
     console.log(sql); 
-    connection.query(sql, params,function (err, result) 
+    connection.query(sql, params, function (err, result) 
     {
         if (err) 
             console.log(err);
@@ -81,7 +84,7 @@ function putAlumno(request, response)
 function deleteAlumno(request, response)
 {
     console.log(request.body);
-    let sql = "DELETE FROM alumnos WHERE id_alumno = '" + request.body.id_alumno + "'";
+    let sql = "DELETE FROM studients WHERE id_studient = '" + request.body.id_studient + "'";
     console.log(sql); 
     connection.query(sql, function (err, result) 
     {
