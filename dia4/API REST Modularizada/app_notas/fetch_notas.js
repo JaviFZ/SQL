@@ -117,18 +117,22 @@ function getNotas()
     {
         return data.json()
     })
-    .then(function(data)
+    .then(function(result)
     {      
-        if (!data.error)
+        if (!result.error)
         {      
             //   console.log(id + 'en fech');
-              console.log(data);
-        // console.log(solicitud);                                
-        lista.innerHTML += `<p>ID de estudiante: ${data[i].id_studient} <br>  
-                            ID asignatura: ${data[i].id_subject}<br>
-                            Fecha: ${data[i].date}<br>
-                            Nota: ${data[i].mark}<br>
+            //   console.log(data);
+        // console.log(solicitud);   
+        
+        result.forEach(function (nota) {
+            lista.innerHTML += `<p>ID de estudiante: ${nota.id_studient} <br>  
+                            ID asignatura: ${nota.id_subject}<br>
+                            Fecha: ${nota.date}<br>
+                            Nota: ${nota.mark}<br>
                             </p>`
+        })                           
+        
                                                         
         }
         else
@@ -182,31 +186,31 @@ function getNotas()
 
 
 function putNota() {
-    let newName = document.getElementById("id_studient").value;
-    let newLast = document.getElementById("id_subject").value;
-    let newGrupo = document.getElementById("date").value;  
-    let newYear = document.getElementById("mark").value;
+    let newIdStudient = document.getElementById("id_studient").value;
+    let newIdSubject = document.getElementById("id_subject").value;
+    let newDate = document.getElementById("date").value;  
+    let newMark = document.getElementById("mark").value;
     let id = document.getElementById("id_mark").value;
 
-    if(newName == ''){
-        newName = null;
+    if(newIdStudient == ''){
+        newIdStudient = null;
     }
-    if(newLast == ''){
-        newLast = null;
+    if(newIdSubject == ''){
+        newIdSubject = null;
     }
-    if(newGrupo == ''){
-        newGrupo= null;
+    if(newDate == ''){
+        newDate= null;
     }
-    if(newYear == ''){
-        newYear = null;
+    if(newMark == ''){
+        newMark = null;
     }
 
     let put ={
-        id_studient: newName, 
-        id_subject: newLast, 
-        date: newGrupo, 
-        mark: newYear,
-        id_studient: id
+        id_studient: newIdStudient, 
+        id_subject: newIdSubject, 
+        date: newDate, 
+        mark: newMark,
+        id_mark: id
 
     }
     console.log(put);
@@ -217,7 +221,6 @@ function putNota() {
         
     };
 
-    console.log(newYear);
  
     let url = "http://localhost:3000/notas"
     

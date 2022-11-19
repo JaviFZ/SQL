@@ -8,7 +8,7 @@ function getNotas(request, response)
     if (request.query.id == null)
         sql = "SELECT * FROM marks";
     else
-        sql = "SELECT mark FROM marks WHERE id_studient=" + request.query.id;
+        sql = "SELECT id_studient, id_subject, date, mark FROM marks WHERE id_studient=" + request.query.id;
      
     connection.query(sql, function (err, result)
     {
