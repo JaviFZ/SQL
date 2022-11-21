@@ -83,7 +83,7 @@ function postAlumno()
             if (result.error)
                 showToast("ERROR: " +  result.mensaje, "bg-danger")
             else
-                showToast("Alumno Creado Correctamente", "bg-success")
+                showToast(`Alumno con ID: ${result}  Creado Correctamente`, "bg-success")
 
             console.log(result)
         })
@@ -125,7 +125,8 @@ function getAlumnos()
               console.log(id + 'en fech');
               console.log(data);
         // console.log(solicitud);                                
-        lista.innerHTML += `<p>Nombre: ${data[0].first_name} <br>  
+        lista.innerHTML += `<p>ID alumno: ${data[0].id_studient} <br> 
+                            Nombre: ${data[0].first_name} <br>  
                             Apellido: ${data[0].last_name}<br>
                             Grupo: ${data[0].id_grupo}<br>
                             Año de ingreso: ${data[0].year_ingress}<br>
@@ -161,7 +162,8 @@ function getAlumnos()
 
     result.forEach(function (alumno) {               
         // console.log(solicitud);                                
-        lista.innerHTML += `<p>Nombre: ${alumno.first_name} <br>  
+        lista.innerHTML += `<p>ID: ${alumno.id_studient} <br>
+                            Nombre: ${alumno.first_name} <br>  
                             Apellido: ${alumno.last_name}<br>
                             Grupo: ${alumno.id_grupo}<br>
                             Año de ingreso: ${alumno.year_ingress}<br>
@@ -229,7 +231,7 @@ function putAlumno() {
         })
         .then((data) => {
           console.log(data.resultado);
-          showToast("Profesional Modificado Correctamente", "bg-success")
+          showToast("Alumno Modificado Correctamente", "bg-success")
         })
         .catch((error) => {
           console.log(error);
